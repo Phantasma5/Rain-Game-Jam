@@ -8,14 +8,19 @@ public class WaterScript : MonoBehaviour
     [SerializeField] private float damage;
     private void OnTriggerStay(Collider other)
     {
-        switch(other.tag)
+        Rigidbody rb = other.GetComponent<Rigidbody>();
+        if (rb)
+        {
+            if (rb.velocity.y < 2)
+            {
+                rb.AddForce(new Vector3(0, buoyancy * Time.deltaTime, 0));
+            }
+        }
+
+        switch (other.tag)
         {
             case "Player":
                 References.playerStatSystem.AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
-                if(2 > References.playerRigidbody.velocity.y)
-                {
-                    References.playerRigidbody.AddForce(new Vector3(0, buoyancy*Time.deltaTime, 0));
-                }
                 break;
             case "Fire":
                 Destroy(other.gameObject);
