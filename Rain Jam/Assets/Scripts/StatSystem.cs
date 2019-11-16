@@ -68,6 +68,10 @@ public class StatSystem : MonoBehaviour
             if(stat.type == aStat)
             {
                 stat.value += aValue;
+                if(stat.value > stat.maxValue)
+                {
+                    stat.value = stat.maxValue;
+                }
                 Callback(aStat);
             }
         }
@@ -83,6 +87,10 @@ public class StatSystem : MonoBehaviour
                     continue;
                 }
                 stat.value = aValue;
+                if (stat.value > stat.maxValue)
+                {
+                    stat.value = stat.maxValue;
+                }
                 Callback(aStat);
             }
         }
