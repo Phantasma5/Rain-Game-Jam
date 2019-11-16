@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7015566619733456960}
   - component: {fileID: 7015566619733456975}
   - component: {fileID: 7015566619733456974}
-  - component: {fileID: 7015566619733456973}
   - component: {fileID: 7015566619733456961}
   - component: {fileID: 7015566619733456962}
   - component: {fileID: 7015566619733456963}
+  - component: {fileID: 7181652972846835153}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -82,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &7015566619733456973
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7015566619733456972}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7015566619733456961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,8 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0e9cceafab196439a7e551b49cb8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rain: {fileID: 0}
   rotateSpeed: 20
   movementSpeed: 15
+  maxVelocity: 0
   damage: 1
 --- !u!54 &7015566619733456962
 Rigidbody:
@@ -142,3 +131,17 @@ MonoBehaviour:
   - type: 1
     value: 100
     maxValue: 100
+--- !u!136 &7181652972846835153
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015566619733456972}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.5, z: 0}
