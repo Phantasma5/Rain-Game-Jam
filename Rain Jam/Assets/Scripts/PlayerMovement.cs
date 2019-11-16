@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 zVel;
     References refInstance;
     Rigidbody rigidBody;
+    GameObject torch;
 
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         mainCam = FindObjectOfType<Camera>();
         refInstance = FindObjectOfType<References>();
         rigidBody = GetComponent<Rigidbody>();
+        torch = GameObject.FindGameObjectWithTag("Torch");
     }
 
     // Update is called once per frame
@@ -69,23 +71,26 @@ public class PlayerMovement : MonoBehaviour
             {
                 RaycastHit hit;
                 References.playerStatSystem.AddValue(StatSystem.StatType.Matches, -1);
-                if(Physics.SphereCast(transform.position, 3, transform.forward, out hit, 5))
+                if(Physics.SphereCast(transform.position, 5, transform.forward, out hit, 50))
                 {
-                    if(hit.collider.gameObject.tag == "Fire")
+                    if(hit.collider.gameObject.tag == "Wood")
                     {
                         //light the fire
                         Debug.Log("fire will be lit");
+                        hit.collider.gameObject.GetComponent<WoodScript>().burn = true;
                     }
                     else
                     {
                         //Light the tourch
                         Debug.Log("Tourch will be lit");
+                        torch.GetComponent<StatSystem>().SetValue(StatSystem.StatType.Heat, 10);
                     }
                 }
                 else
                 {
                     //Light the tourch
                     Debug.Log("Tourch will be lit");
+                    torch.GetComponent<StatSystem>().SetValue(StatSystem.StatType.Heat, 10);
                 }
             }
         }

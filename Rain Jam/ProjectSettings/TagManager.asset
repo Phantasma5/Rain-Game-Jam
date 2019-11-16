@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Fire
   - Torch
+  - MainLight
+  - Wood
   layers:
   - Default
   - TransparentFX
