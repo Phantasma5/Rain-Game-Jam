@@ -10,44 +10,47 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float movementSpeed;
     [SerializeField]
-    float maxVelocity;
-    [SerializeField]
     float damage;
     Camera mainCam;
     float rotateX;
     float rotateY;
     float moveForward;
-    float moveSideWays;
+    float moveSideways;
+    Vector3 xVel;
+    Vector3 zVel;
     References refInstance;
+    Rigidbody rigidBody;
+
+
     // Start is called before the first frame update
     void Start()
     {
         mainCam = FindObjectOfType<Camera>();
         refInstance = FindObjectOfType<References>();
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveForward = Input.GetAxis("Horizontal") * movementSpeed;
-        moveSideWays = Input.GetAxis("Vertical") * movementSpeed;
-        Vector3 movement = new Vector3(moveForward, 0, moveSideWays);
+        moveSideways= Input.GetAxis("Horizontal");
+        moveForward = Input.GetAxis("Vertical");
+        xVel = transform.right * moveSideways;
+        zVel = transform.forward * moveForward;
+        Vector3 movement = (xVel + zVel).normalized * movementSpeed;
+        movement.y = rigidBody.velocity.y;
         rotateX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
         rotateY -= Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime;
 
         transform.eulerAngles = new Vector3(0, rotateX, 0);
         mainCam.transform.eulerAngles = new Vector3(rotateY, rotateX, 0);
-        if(GetComponent<Rigidbody>().velocity.magnitude < maxVelocity)
-        {
-            GetComponent<Rigidbody>().AddRelativeForce(moveForward, 0, moveSideWays);
-        }
-        Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
+        rigidBody.velocity = movement;
 
         if(Input.GetButtonDown("Jump"))
         {
-            if(Physics.Raycast(transform.position, Vector3.down, 1))
+            if (Physics.Raycast(transform.position, Vector3.down, 2))
             {
-                GetComponent<Rigidbody>().AddForce(0, 5, 0, ForceMode.Impulse);
+                rigidBody.AddForce(0, 5, 0, ForceMode.Impulse);
             }
         }
 
