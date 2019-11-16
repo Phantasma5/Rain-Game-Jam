@@ -45,7 +45,7 @@ public class UserInterface : MonoBehaviour
     }
     private void UpdateMatches(StatSystem.StatType aStat, float aValue)
     {
-        matchesTxt.text = (aValue + "/" + References.playerStatSystem.GetMaxValue(aStat));
+        matchesTxt.text = ("Matches: " + aValue + "/" + References.playerStatSystem.GetMaxValue(aStat));
     }
 
 }
