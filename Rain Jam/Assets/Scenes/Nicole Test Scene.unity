@@ -776,5 +776,25 @@ PrefabInstance:
       propertyPath: rain
       value: 
       objectReference: {fileID: 516153899}
+    - target: {fileID: 7015566619733456963, guid: ef0360892c22e1a4fb56f64aef7cf5f4,
+        type: 3}
+      propertyPath: myStats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015566619733456963, guid: ef0360892c22e1a4fb56f64aef7cf5f4,
+        type: 3}
+      propertyPath: myStats.Array.data[1].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015566619733456963, guid: ef0360892c22e1a4fb56f64aef7cf5f4,
+        type: 3}
+      propertyPath: myStats.Array.data[1].value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7015566619733456963, guid: ef0360892c22e1a4fb56f64aef7cf5f4,
+        type: 3}
+      propertyPath: myStats.Array.data[1].maxValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef0360892c22e1a4fb56f64aef7cf5f4, type: 3}

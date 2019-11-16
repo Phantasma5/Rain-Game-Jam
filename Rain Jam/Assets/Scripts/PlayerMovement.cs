@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveSideways= Input.GetAxis("Horizontal");
+        moveSideways = Input.GetAxis("Horizontal");
         moveForward = Input.GetAxis("Vertical");
         xVel = transform.right * moveSideways;
         zVel = transform.forward * moveForward;
@@ -41,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
         movement.y = rigidBody.velocity.y;
         rotateX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
         rotateY -= Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime;
-        
+
         transform.eulerAngles = new Vector3(0, rotateX, 0);
-        if(rotateY < 90 && rotateY > -90)
+        if (rotateY < 90 && rotateY > -90)
         {
             mainCam.transform.eulerAngles = new Vector3(rotateY, rotateX, 0);
         }
@@ -51,10 +51,10 @@ public class PlayerMovement : MonoBehaviour
         {
             mainCam.transform.eulerAngles = new Vector3(Mathf.Sign(rotateY) * 89, rotateX, 0);
         }
-        
+
         rigidBody.velocity = movement;
 
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             if (Physics.Raycast(transform.position, Vector3.down, 2))
             {
@@ -62,7 +62,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(!Physics.Raycast(transform.position, Vector3.up, 20)) //If there is no ceiling above you, take damage
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (References.playerStatSystem.GetValue(StatSystem.StatType.Matches) > 0)
+            {
+                References.playerStatSystem.AddValue(StatSystem.StatType.Matches, -1);
+            }
+        }
+
+        if (!Physics.Raycast(transform.position, Vector3.up, 20)) //If there is no ceiling above you, take damage
         {
             References.playerStatSystem.AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
         }

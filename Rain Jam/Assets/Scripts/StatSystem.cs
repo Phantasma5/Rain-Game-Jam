@@ -12,6 +12,7 @@ public class StatSystem : MonoBehaviour
     {
         First,
         Heat,
+        Matches,
         Last
     }
 
