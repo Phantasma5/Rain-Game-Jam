@@ -72,25 +72,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 RaycastHit hit;
                 References.playerStatSystem.AddValue(StatSystem.StatType.Matches, -1);
-                if(Physics.SphereCast(transform.position, 5, transform.forward, out hit, 50))
+                if(Physics.SphereCast(transform.position, 2, transform.forward, out hit, 50))
                 {
                     if(hit.collider.gameObject.tag == "Wood")
                     {
                         //light the fire
-                        Debug.Log("fire will be lit");
                         hit.collider.gameObject.GetComponent<WoodScript>().burn = true;
                     }
                     else
                     {
                         //Light the tourch
-                        Debug.Log("Tourch will be lit");
                         torch.GetComponent<StatSystem>().SetValue(StatSystem.StatType.Heat, 10);
                     }
                 }
                 else
                 {
                     //Light the tourch
-                    Debug.Log("Tourch will be lit");
                     torch.GetComponent<StatSystem>().SetValue(StatSystem.StatType.Heat, 10);
                 }
             }
