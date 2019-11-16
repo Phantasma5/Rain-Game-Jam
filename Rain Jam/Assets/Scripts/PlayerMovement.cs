@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     float movementSpeed;
     [SerializeField]
+    float maxVelocity;
+    [SerializeField]
     float damage;
     Camera mainCam;
     float rotateX;
@@ -26,16 +28,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime, 0, Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime);
         moveForward = Input.GetAxis("Horizontal") * movementSpeed;
         moveSideWays = Input.GetAxis("Vertical") * movementSpeed;
+        Vector3 movement = new Vector3(moveForward, 0, moveSideWays);
         rotateX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
         rotateY -= Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime;
 
         transform.eulerAngles = new Vector3(0, rotateX, 0);
         mainCam.transform.eulerAngles = new Vector3(rotateY, rotateX, 0);
-
-        GetComponent<Rigidbody>().AddRelativeForce(moveForward, 0, moveSideWays);
+        if(GetComponent<Rigidbody>().velocity.magnitude < maxVelocity)
+        {
+            GetComponent<Rigidbody>().AddRelativeForce(moveForward, 0, moveSideWays);
+        }
+        Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
 
         if(Input.GetButtonDown("Jump"))
         {
