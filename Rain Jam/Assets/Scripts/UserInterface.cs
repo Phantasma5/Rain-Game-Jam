@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UserInterface : MonoBehaviour
 {
     #region References
-    [SerializeField] private GameObject healthbar;
+    [SerializeField] private Image healthbar;
+    [SerializeField] Gradient healthGradient;
     #endregion
     #region Variables
 
@@ -20,6 +22,7 @@ public class UserInterface : MonoBehaviour
         Vector3 sca;
         sca = healthbar.transform.localScale;
         sca.x = aValue / References.playerStatSystem.GetMaxValue(StatSystem.StatType.Heat);
+        healthbar.color = healthGradient.Evaluate(sca.x);
         healthbar.transform.localScale = sca;
     }
 }
