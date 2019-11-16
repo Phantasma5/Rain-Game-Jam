@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45ff232520db6b4f936abdb1670b42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinIntensity: 0.8
+  MinIntensity: 0.9
   MaxIntensity: 1
-  TimeDelta: 0
+  TimeDelta: 0.1
   light: {fileID: 3838219984209659277}
 --- !u!1 &3091074792689790205
 GameObject:
