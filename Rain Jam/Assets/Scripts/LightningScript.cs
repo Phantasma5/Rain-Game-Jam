@@ -20,7 +20,6 @@ public class LightningScript : MonoBehaviour
     void Update()
     {
         flashTime -= Time.deltaTime;
-        Debug.Log(flashTime);
         if(flashTime < 0)
         {
             StartCoroutine("LightningFlash");

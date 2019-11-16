@@ -66,7 +66,21 @@ public class PlayerMovement : MonoBehaviour
         {
             if (References.playerStatSystem.GetValue(StatSystem.StatType.Matches) > 0)
             {
+                RaycastHit hit;
                 References.playerStatSystem.AddValue(StatSystem.StatType.Matches, -1);
+                if(Physics.SphereCast(transform.position, 3,transform.forward, out hit))
+                {
+                    if(hit.collider.gameObject.tag == "Fire")
+                    {
+                        //light the fire
+                        Debug.Log("fire will be lit");
+                    }
+                    else
+                    {
+                        //Light the tourch
+                        Debug.Log("Tourch will be lit");
+                    }
+                }
             }
         }
 
