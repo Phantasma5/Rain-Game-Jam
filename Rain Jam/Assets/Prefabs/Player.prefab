@@ -94,10 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0e9cceafab196439a7e551b49cb8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rain: {fileID: 0}
+  rain: {fileID: 2154475888342403389, guid: 2191c6664f4fe5245b4ec1f2264b541c, type: 3}
   rotateSpeed: 20
   movementSpeed: 15
-  maxVelocity: 0
   damage: 1
 --- !u!54 &7015566619733456962
 Rigidbody:

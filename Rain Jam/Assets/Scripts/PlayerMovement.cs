@@ -41,9 +41,17 @@ public class PlayerMovement : MonoBehaviour
         movement.y = rigidBody.velocity.y;
         rotateX += Input.GetAxis("Mouse X") * rotateSpeed * Time.deltaTime;
         rotateY -= Input.GetAxis("Mouse Y") * rotateSpeed * Time.deltaTime;
-
+        
         transform.eulerAngles = new Vector3(0, rotateX, 0);
-        mainCam.transform.eulerAngles = new Vector3(rotateY, rotateX, 0);
+        if(rotateY < 90 && rotateY > -90)
+        {
+            mainCam.transform.eulerAngles = new Vector3(rotateY, rotateX, 0);
+        }
+        else
+        {
+            mainCam.transform.eulerAngles = new Vector3(Mathf.Sign(rotateY) * 89, rotateX, 0);
+        }
+        
         rigidBody.velocity = movement;
 
         if(Input.GetButtonDown("Jump"))
