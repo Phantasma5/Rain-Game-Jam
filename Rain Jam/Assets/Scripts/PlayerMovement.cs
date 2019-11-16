@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public ParticleSystem rain;
     [SerializeField]
     float rotateSpeed;
     [SerializeField]
@@ -50,10 +51,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(!Physics.Raycast(transform.position, Vector3.up, 20))
+        if(!Physics.Raycast(transform.position, Vector3.up, 20)) //If there is no ceiling above you, take damage
         {
             References.playerStatSystem.AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
-            Debug.Log(References.playerStatSystem.GetValue(StatSystem.StatType.Heat));
         }
+
+        rain.transform.position = new Vector3(transform.position.x, rain.transform.position.y, transform.position.z);
     }
 }
