@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
         refInstance = FindObjectOfType<References>();
         rigidBody = GetComponent<Rigidbody>();
         torch = GameObject.FindGameObjectWithTag("Torch");
-        rotateX = 0;
+        rotateX = 90;
     }
 
     // Update is called once per frame
