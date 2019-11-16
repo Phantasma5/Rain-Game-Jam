@@ -73,6 +73,10 @@ public class StatSystem : MonoBehaviour
                 {
                     stat.value = stat.maxValue;
                 }
+                if(stat.value < 0)
+                {
+                    stat.value = 0;
+                }
                 Callback(aStat);
             }
         }

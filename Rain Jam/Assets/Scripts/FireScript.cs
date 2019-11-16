@@ -12,6 +12,10 @@ public class FireScript : MonoBehaviour
             case "Player":
                 References.playerStatSystem.AddValue(StatSystem.StatType.Heat, healing * Time.deltaTime);
                 break;
+            case "Torch":
+                other.GetComponent<StatSystem>().AddValue(StatSystem.StatType.Heat, healing * Time.deltaTime);
+                break;
+
         }
     }
 }
