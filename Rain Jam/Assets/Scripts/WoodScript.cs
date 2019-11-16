@@ -16,7 +16,11 @@ public class WoodScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(burn == true)
+        if (null == fire)
+        {
+            return;
+        }
+        if (burn == true)
         {
             fire.SetActive(true);
         }
