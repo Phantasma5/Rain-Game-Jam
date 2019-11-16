@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         refInstance = FindObjectOfType<References>();
         rigidBody = GetComponent<Rigidbody>();
         torch = GameObject.FindGameObjectWithTag("Torch");
+        rotateX = 0;
     }
 
     // Update is called once per frame
@@ -71,25 +72,22 @@ public class PlayerMovement : MonoBehaviour
             {
                 RaycastHit hit;
                 References.playerStatSystem.AddValue(StatSystem.StatType.Matches, -1);
-                if(Physics.SphereCast(transform.position, 5, transform.forward, out hit, 50))
+                if(Physics.SphereCast(transform.position, 2, transform.forward, out hit, 50))
                 {
                     if(hit.collider.gameObject.tag == "Wood")
                     {
                         //light the fire
-                        Debug.Log("fire will be lit");
                         hit.collider.gameObject.GetComponent<WoodScript>().burn = true;
                     }
                     else
                     {
                         //Light the tourch
-                        Debug.Log("Tourch will be lit");
                         torch.GetComponent<StatSystem>().SetValue(StatSystem.StatType.Heat, 10);
                     }
                 }
                 else
                 {
                     //Light the tourch
-                    Debug.Log("Tourch will be lit");
                     torch.GetComponent<StatSystem>().SetValue(StatSystem.StatType.Heat, 10);
                 }
             }
@@ -98,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         if (!Physics.Raycast(transform.position, Vector3.up, 20)) //If there is no ceiling above you, take damage
         {
             References.playerStatSystem.AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
+            torch.GetComponent<StatSystem>().AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
         }
 
         rain.transform.position = new Vector3(transform.position.x, rain.transform.position.y, transform.position.z);
