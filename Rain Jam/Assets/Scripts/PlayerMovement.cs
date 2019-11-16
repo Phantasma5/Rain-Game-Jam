@@ -8,15 +8,19 @@ public class PlayerMovement : MonoBehaviour
     float rotateSpeed;
     [SerializeField]
     float movementSpeed;
+    [SerializeField]
+    float damage;
     Camera mainCam;
     float rotateX;
     float rotateY;
     float moveForward;
     float moveSideWays;
+    References refInstance;
     // Start is called before the first frame update
     void Start()
     {
         mainCam = FindObjectOfType<Camera>();
+        refInstance = FindObjectOfType<References>();
     }
 
     // Update is called once per frame
@@ -39,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 GetComponent<Rigidbody>().AddForce(0, 5, 0, ForceMode.Impulse);
             }
+        }
+
+        if(!Physics.Raycast(transform.position, Vector3.up, 20))
+        {
+            References.playerStatSystem.AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
+            Debug.Log(References.playerStatSystem.GetValue(StatSystem.StatType.Heat));
         }
     }
 }
