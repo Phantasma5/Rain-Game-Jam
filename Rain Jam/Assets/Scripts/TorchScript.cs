@@ -10,7 +10,8 @@ public class TorchScript : MonoBehaviour
     {
         myStatSystem = GetComponent<StatSystem>();
         myStatSystem.AddCallBack(StatSystem.StatType.Heat, UpdateFlame);
-        myStatSystem.SetValue(StatSystem.StatType.Heat, 0);
+
+        myStatSystem.Callback(StatSystem.StatType.Heat);
     }
     private void UpdateFlame(StatSystem.StatType aStat, float aValue)
     {
