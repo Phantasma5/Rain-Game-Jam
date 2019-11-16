@@ -16,7 +16,7 @@ public class References : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         FindReferences();
     }
     private void FindReferences()
