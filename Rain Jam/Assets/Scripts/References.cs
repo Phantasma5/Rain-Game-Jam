@@ -6,6 +6,8 @@ public class References : MonoBehaviour
 {
     public static References instance;
     public static GameObject player;
+    public static Rigidbody playerRigidbody;
+    public static StatSystem playerStatSystem;
     private void Awake()
     {
         if(null != instance)
@@ -19,6 +21,11 @@ public class References : MonoBehaviour
     }
     private void FindReferences()
     {
-
+        player = GameObject.FindWithTag("Player");
+        if (null != player)
+        {
+            playerRigidbody = player.GetComponent<Rigidbody>();
+            playerStatSystem = player.GetComponent<StatSystem>();
+        }
     }
 }

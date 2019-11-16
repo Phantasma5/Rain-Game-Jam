@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class StatSystem : MonoBehaviour
 {
+    [SerializeField] private List<Stat> myStats = new List<Stat>();
+    [HideInInspector] public delegate void StatUpdateFunction(StatType aStat, float aNewValue);
+    Dictionary<StatType, StatUpdateFunction> callbacks = new Dictionary<StatType, StatUpdateFunction>();
+
     public enum StatType
     {
         First,
@@ -11,16 +15,13 @@ public class StatSystem : MonoBehaviour
         Last
     }
 
+    [System.Serializable]
     public class Stat
     {
         public StatType type;
         public float value;
         public float defaultValue;
     }
-    List<Stat> myStats = new List<Stat>();
-    public delegate void StatUpdateFunction(StatType aStat, float aNewValue);
-    Dictionary<StatType, StatUpdateFunction> callbacks = new Dictionary<StatType, StatUpdateFunction>();
-
     public void AddCallBack(StatType aStat, StatUpdateFunction aFn)
     {
         if (callbacks.ContainsKey(aStat))
