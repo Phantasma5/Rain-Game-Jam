@@ -17,6 +17,9 @@ public class WaterScript : MonoBehaviour
                     References.playerRigidbody.AddForce(new Vector3(0, buoyancy*Time.deltaTime, 0));
                 }
                 break;
+            case "Fire":
+                Destroy(other.gameObject);
+                break;
         }
     }
 }

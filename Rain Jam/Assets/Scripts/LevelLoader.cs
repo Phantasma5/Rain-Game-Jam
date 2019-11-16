@@ -9,4 +9,26 @@ public class LevelLoader : MonoBehaviour
     {
         SceneManager.LoadScene(aLevel);
     }
+    private void Start()
+    {
+        if(null != References.playerStatSystem)
+        {
+            References.playerStatSystem.AddCallBack(StatSystem.StatType.Heat, PlayerDead);
+        }
+    }
+    private void PlayerDead(StatSystem.StatType aStat, float aValue)
+    {
+        if(aValue <= 0)
+        {
+            LoadLevel("GameOver");
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if("Player" == other.tag)
+        {
+            LoadLevel("Victory");
+        }
+    }
 }
