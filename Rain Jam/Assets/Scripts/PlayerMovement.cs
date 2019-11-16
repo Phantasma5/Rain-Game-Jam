@@ -62,13 +62,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        Debug.DrawRay(transform.position, transform.forward);
         if (Input.GetButtonDown("Fire1"))
         {
             if (References.playerStatSystem.GetValue(StatSystem.StatType.Matches) > 0)
             {
                 RaycastHit hit;
                 References.playerStatSystem.AddValue(StatSystem.StatType.Matches, -1);
-                if(Physics.SphereCast(transform.position, 3,transform.forward, out hit))
+                if(Physics.SphereCast(transform.position, 3, transform.forward, out hit, 5))
                 {
                     if(hit.collider.gameObject.tag == "Fire")
                     {
@@ -80,6 +81,11 @@ public class PlayerMovement : MonoBehaviour
                         //Light the tourch
                         Debug.Log("Tourch will be lit");
                     }
+                }
+                else
+                {
+                    //Light the tourch
+                    Debug.Log("Tourch will be lit");
                 }
             }
         }
