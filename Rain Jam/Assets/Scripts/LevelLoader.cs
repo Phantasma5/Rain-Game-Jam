@@ -7,6 +7,14 @@ public class LevelLoader : MonoBehaviour
 {
     public void LoadLevel(string aLevel)
     {
+        if(aLevel == "Level")
+        {
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.visible = true;
+        }
         SceneManager.LoadScene(aLevel);
     }
     private void Start()
