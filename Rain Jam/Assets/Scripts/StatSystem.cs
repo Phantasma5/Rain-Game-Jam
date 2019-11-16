@@ -20,7 +20,7 @@ public class StatSystem : MonoBehaviour
     {
         public StatType type;
         public float value;
-        public float defaultValue;
+        public float maxValue;
     }
     public void AddCallBack(StatType aStat, StatUpdateFunction aFn)
     {
@@ -38,9 +38,20 @@ public class StatSystem : MonoBehaviour
     {
         foreach (var stat in myStats)
         {
-            if(stat.type == aStat)
+            if (stat.type == aStat)
             {
                 return stat.value;
+            }
+        }
+        return (float.MinValue);
+    }
+    public float GetMaxValue(StatType aStat)
+    {
+        foreach (var stat in myStats)
+        {
+            if (stat.type == aStat)
+            {
+                return stat.maxValue;
             }
         }
         return (float.MinValue);

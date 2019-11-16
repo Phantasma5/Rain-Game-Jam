@@ -105,5 +105,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d818e5ba98ca84195ef900880489fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buoyancy: 0
-  damage: 0
+  buoyancy: 1000
+  damage: 10
