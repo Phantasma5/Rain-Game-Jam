@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         refInstance = FindObjectOfType<References>();
         rigidBody = GetComponent<Rigidbody>();
         torch = GameObject.FindGameObjectWithTag("Torch");
+        rotateX = 0;
     }
 
     // Update is called once per frame
@@ -98,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if (!Physics.Raycast(transform.position, Vector3.up, 20)) //If there is no ceiling above you, take damage
         {
             References.playerStatSystem.AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
+            torch.GetComponent<StatSystem>().AddValue(StatSystem.StatType.Heat, -damage * Time.deltaTime);
         }
 
         rain.transform.position = new Vector3(transform.position.x, rain.transform.position.y, transform.position.z);

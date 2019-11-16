@@ -24,4 +24,11 @@ public class TorchScript : MonoBehaviour
             flame.SetActive(false);
         }
     }
+    private void Update()
+    {
+        if(flame.activeInHierarchy == true)
+        {
+            References.playerStatSystem.AddValue(StatSystem.StatType.Heat, 2 * Time.deltaTime);
+        }
+    }
 }
