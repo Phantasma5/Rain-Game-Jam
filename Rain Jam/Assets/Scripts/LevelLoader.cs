@@ -10,10 +10,12 @@ public class LevelLoader : MonoBehaviour
         if(aLevel == "Level")
         {
             Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
         else
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         SceneManager.LoadScene(aLevel);
     }
