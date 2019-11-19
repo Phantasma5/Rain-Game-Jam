@@ -11,7 +11,8 @@ public class LightningScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainLight = GameObject.FindGameObjectWithTag("MainLight");
+        if(mainLight == null)
+            mainLight = GameObject.FindGameObjectWithTag("MainLight");
         mainLight.SetActive(false);
         flashTime = Random.Range(5, 30);
     }
