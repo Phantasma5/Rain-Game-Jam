@@ -72,8 +72,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 RaycastHit hit;
                 References.playerStatSystem.AddValue(StatSystem.StatType.Matches, -1);
-                if(Physics.SphereCast(transform.position, 2, transform.forward, out hit, 50))
+                if(Physics.SphereCast(transform.position, 0.03f, mainCam.transform.forward, out hit, 4))
                 {
+                    Debug.Log(hit.transform.name);
                     if(hit.collider.gameObject.tag == "Wood")
                     {
                         //light the fire
